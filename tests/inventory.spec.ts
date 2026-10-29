@@ -2,13 +2,14 @@ import { expect, test } from '@playwright/test';
 import { InventoryPage } from '../pages/InventoryPage';
 import { LoginPage } from '../pages/LoginPage';
 import { CartPage } from '../pages/CartPage';
+import { users } from './test-data';
 
 test('Add product to cart and verify name and price', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
   const cartPage = new CartPage(page);
   await page.goto('/');
-  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.login(users.standard);
 
   await expect(page).toHaveURL('/inventory.html');
 
@@ -28,7 +29,7 @@ test('Remove product from cart via inventory', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
 
   await page.goto('/');
-  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.login(users.standard);
 
   await expect(page).toHaveURL('/inventory.html');
 

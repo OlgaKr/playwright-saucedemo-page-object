@@ -13,8 +13,8 @@ export class LoginPage {
     this.loginButton = page.getByTestId('login-button');
   }
 
-  async login(username: string, password: string) {
-    await this.usernameInput.fill(username);
+  async login({ login, password }: { login: string; password: string }) {
+    await this.usernameInput.fill(login);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
   }

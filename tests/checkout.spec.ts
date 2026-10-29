@@ -4,6 +4,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutStepOnePage } from '../pages/CheckoutStepOnePage';
 import { CheckoutStepTwoPage } from '../pages/CheckoutStepTwoPage';
+import { users } from './test-data';
 
 test('Full checkout scenario', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -12,7 +13,7 @@ test('Full checkout scenario', async ({ page }) => {
   const checkoutStepOnePage = new CheckoutStepOnePage(page);
   const checkoutStepTwoPage = new CheckoutStepTwoPage(page);
   await page.goto('/');
-  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.login(users.standard);
 
   await expect(page).toHaveURL('/inventory.html');
 
